@@ -1,3 +1,3 @@
 
 rootProject.name = 'ProtoHax'
-include':src'
+include':app'
