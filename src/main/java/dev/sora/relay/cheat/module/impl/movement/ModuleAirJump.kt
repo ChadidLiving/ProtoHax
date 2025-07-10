@@ -7,9 +7,9 @@ import org.cloudburstmc.math.vector.Vector3f
 import org.cloudburstmc.protocol.bedrock.data.PlayerAuthInputData
 import org.cloudburstmc.protocol.bedrock.packet.SetEntityMotionPacket
 
-class ModuleAirJump : CheatModule("AirJump", CheatCategory.MOVEMENT) {
+class ModuleAirJump : CheatModule("空中跳跃", CheatCategory.MOVEMENT) {
 
-	private var speedMultiplierValue by floatValue("SpeedMultiplier", 1f, 0.5f..3f)
+	private var speedMultiplierValue by floatValue("速度倍率", 1f, 0.5f..3f)
 
 	private val onTick = handleOneTime<EventTick>({ it.session.player.inputData.contains(PlayerAuthInputData.JUMP_DOWN) }) {
 		val player = session.player

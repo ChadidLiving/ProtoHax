@@ -5,7 +5,7 @@ import dev.sora.relay.cheat.module.CheatModule
 import dev.sora.relay.game.event.EventPacketOutbound
 import org.cloudburstmc.protocol.bedrock.packet.BedrockPacket
 
-class ModuleBlink : CheatModule("Blink", CheatCategory.MOVEMENT) {
+class ModuleBlink : CheatModule("停止发包", CheatCategory.MOVEMENT) {
 
     private val packetList = mutableListOf<BedrockPacket>()
 

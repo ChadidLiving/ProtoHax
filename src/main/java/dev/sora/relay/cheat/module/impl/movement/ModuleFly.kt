@@ -18,11 +18,11 @@ import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
 
-class ModuleFly : CheatModule("Fly", CheatCategory.MOVEMENT) {
+class ModuleFly : CheatModule("飞行", CheatCategory.MOVEMENT) {
 
-    private var modeValue by choiceValue("Mode", arrayOf(Vanilla("Vanilla"), Mineplex(), Jetpack(), Glide(), YPort()), "Vanilla")
-    private var speedValue by floatValue("Speed", 1.5f, 0.1f..5f)
-	private var pressJumpValue by boolValue("PressJump", true)
+    private var modeValue by choiceValue("模式", arrayOf(Vanilla("原版"), Mineplex(), Jetpack(), Glide(), YPort()), "原版")
+    private var speedValue by floatValue("速度", 1.5f, 0.1f..5f)
+	private var pressJumpValue by boolValue("按住跳跃", true)
 
     private var launchY = 0f
 	private val canFly: Boolean
@@ -76,7 +76,7 @@ class ModuleFly : CheatModule("Fly", CheatCategory.MOVEMENT) {
 
 	private inner class Mineplex : Vanilla("Mineplex") {
 
-		private var motionValue by boolValue("MineplexMotion", false)
+		private var motionValue by boolValue("Mineplex速度", false)
 
 		private val handleTick = handle<EventTick> {
 			if (session.player.tickExists % 10 == 0L) {
@@ -115,7 +115,7 @@ class ModuleFly : CheatModule("Fly", CheatCategory.MOVEMENT) {
 		}
 	}
 
-	private inner class Jetpack : Choice("Jetpack") {
+	private inner class Jetpack : Choice("喷气背包") {
 
 		private val handleTick = handle<EventTick> {
 			if (!canFly) {
@@ -137,7 +137,7 @@ class ModuleFly : CheatModule("Fly", CheatCategory.MOVEMENT) {
 		}
 	}
 
-	private inner class Glide : Choice("Glide") {
+	private inner class Glide : Choice("缓降") {
 
 		override fun onDisable() {
 			if (session.netSessionInitialized) {
@@ -163,7 +163,7 @@ class ModuleFly : CheatModule("Fly", CheatCategory.MOVEMENT) {
 	}
 
 
-	private inner class YPort : Choice("YPort") {
+	private inner class YPort : Choice("垂直传送") {
 
 		private var flag = true
 

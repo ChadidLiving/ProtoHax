@@ -12,11 +12,11 @@ import org.cloudburstmc.protocol.bedrock.packet.PlayerActionPacket
 import org.cloudburstmc.protocol.bedrock.packet.PlayerAuthInputPacket
 
 
-class ModuleNoFall : CheatModule("NoFall", CheatCategory.MOVEMENT) {
+class ModuleNoFall : CheatModule("无掉落伤害", CheatCategory.MOVEMENT) {
 
-	private var modeValue by choiceValue("Mode", arrayOf(ElytraGlitch, Cubecraft), ElytraGlitch)
+	private var modeValue by choiceValue("模式", arrayOf(ElytraGlitch, Cubecraft), ElytraGlitch)
 
-	private object ElytraGlitch : Choice("ElytraGlitch") {
+	private object ElytraGlitch : Choice("鞘翅") {
 
 		val handleTick = handle<EventTick> {
 			if (session.player.tickExists % 10 == 0L) {

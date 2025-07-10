@@ -17,12 +17,12 @@ import org.cloudburstmc.math.vector.Vector3i
 import org.cloudburstmc.protocol.bedrock.data.inventory.ContainerId
 import org.cloudburstmc.protocol.bedrock.packet.PlayerHotbarPacket
 
-class ModuleBlockFly : CheatModule("BlockFly", CheatCategory.MOVEMENT) {
+class ModuleBlockFly : CheatModule("方块飞行", CheatCategory.MOVEMENT) {
 
-    private var swingValue by listValue("Swing", EntityLocalPlayer.SwingMode.values(), EntityLocalPlayer.SwingMode.BOTH)
-    private var adaptiveBlockIdValue by boolValue("AdaptiveBlockId", false)
-    private var heldBlockValue by listValue("HeldBlock", HeldBlockMode.values(), HeldBlockMode.MANUAL)
-    private var rotationValue by boolValue("Rotation", false)
+    private var swingValue by listValue("手部动作", EntityLocalPlayer.SwingMode.values(), EntityLocalPlayer.SwingMode.BOTH)
+    private var adaptiveBlockIdValue by boolValue("自适应方块", false)
+    private var heldBlockValue by listValue("持有方块", HeldBlockMode.values(), HeldBlockMode.MANUAL)
+    private var rotationValue by boolValue("转头", false)
 
     private val extendableFacing = arrayOf(EnumFacing.WEST, EnumFacing.EAST, EnumFacing.UP, EnumFacing.SOUTH, EnumFacing.NORTH)
 
@@ -132,7 +132,7 @@ class ModuleBlockFly : CheatModule("BlockFly", CheatCategory.MOVEMENT) {
     }
 
     private enum class HeldBlockMode(override val choiceName: String) : NamedChoice {
-        MANUAL("Manual"),
-        AUTOMATIC("Auto")
+        MANUAL("手持"),
+        AUTOMATIC("自动换方块")
     }
 }

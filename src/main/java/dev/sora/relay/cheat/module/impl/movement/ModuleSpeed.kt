@@ -12,12 +12,12 @@ import kotlin.math.abs
 import kotlin.math.cos
 import kotlin.math.sin
 
-class ModuleSpeed : CheatModule("Speed", CheatCategory.MOVEMENT) {
+class ModuleSpeed : CheatModule("速度", CheatCategory.MOVEMENT) {
 
-	private var modeValue by choiceValue("Mode", arrayOf(Simple(), Strafe()), "Simple")
-	private var speedValue by floatValue("Speed", 0.5f, 0.1f..5f)
-	private var jumpValue by floatValue("Jump", 0.42f, 0.2f..1f)
-	private var fakeSprintValue by boolValue("FakeSprint", false)
+	private var modeValue by choiceValue("模式", arrayOf(Simple(), Strafe()), "简单")
+	private var speedValue by floatValue("速度", 0.5f, 0.1f..5f)
+	private var jumpValue by floatValue("跳跃", 0.42f, 0.2f..1f)
+	private var fakeSprintValue by boolValue("伪装疾跑", false)
 
 	private var sprinting = false
 
@@ -39,7 +39,7 @@ class ModuleSpeed : CheatModule("Speed", CheatCategory.MOVEMENT) {
 		sprinting = true
 	}
 
-	private inner class Simple : Choice("Simple") {
+	private inner class Simple : Choice("基础") {
 
 		private val onTick = handle<EventTick> {
 			val player = session.player
@@ -64,9 +64,9 @@ class ModuleSpeed : CheatModule("Speed", CheatCategory.MOVEMENT) {
 		}
 	}
 
-	private inner class Strafe : Choice("Strafe") {
+	private inner class Strafe : Choice("灵活移动") {
 
-		private var resetMotionValue by boolValue("StrafeResetMotion", false)
+		private var resetMotionValue by boolValue("重置动作", false)
 
 		private val EntityLocalPlayer.nextMotionY: Float
 			get() = (motionY - 0.1f) * 0.95f

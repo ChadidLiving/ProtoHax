@@ -5,10 +5,10 @@ import dev.sora.relay.cheat.module.CheatModule
 import kotlin.math.cos
 import kotlin.math.sin
 
-class ModuleClip : CheatModule("Clip", CheatCategory.MOVEMENT, canToggle = false) {
+class ModuleClip : CheatModule("穿墙", CheatCategory.MOVEMENT, canToggle = false) {
 
-	private var verticalValue by floatValue("Vertical", 3f, -10f..10f)
-	private var horizontalValue by floatValue("Horizontal", 3f, -10f..10f)
+	private var verticalValue by floatValue("上下", 3f, -10f..10f)
+	private var horizontalValue by floatValue("水平", 3f, -10f..10f)
 
 	override fun onEnable() {
 		if (!session.netSessionInitialized) return

@@ -9,14 +9,14 @@ import kotlin.math.atan2
 import kotlin.math.cos
 import kotlin.math.sin
 
-class ModuleOpFightBot : CheatModule("OPFightBot", CheatCategory.MOVEMENT) {
+class ModuleOpFightBot : CheatModule("环绕", CheatCategory.MOVEMENT) {
 
-    private var modeValue by listValue("Mode", Mode.values(), Mode.STRAFE)
-    private var rangeValue by floatValue("Range", 1.5f, 1.5f..4f)
-	private var passiveValue by boolValue("Passive", false)
-    private var horizontalSpeedValue by floatValue("HorizontalSpeed", 5f, 1f..7f)
-    private var verticalSpeedValue by floatValue("VerticalSpeed", 4f, 1f..7f)
-    private var strafeSpeedValue by intValue("StrafeSpeed", 20, 10..90).visible { modeValue == Mode.STRAFE }
+    private var modeValue by listValue("模式", Mode.values(), Mode.STRAFE)
+    private var rangeValue by floatValue("距离", 1.5f, 1.5f..4f)
+	private var passiveValue by boolValue("被动技能", false)
+    private var horizontalSpeedValue by floatValue("水平速度", 5f, 1f..7f)
+    private var verticalSpeedValue by floatValue("垂直速度", 4f, 1f..7f)
+    private var strafeSpeedValue by intValue("环绕速度", 20, 10..90).visible { modeValue == Mode.STRAFE }
 
 	private val handleTick = handle<EventTick> {
 		val moduleTargets = moduleManager.getModule(ModuleTargets::class.java)
@@ -38,8 +38,8 @@ class ModuleOpFightBot : CheatModule("OPFightBot", CheatCategory.MOVEMENT) {
 	}
 
 	private enum class Mode(override val choiceName: String) : NamedChoice {
-        RANDOM("Random"),
-        STRAFE("Strafe"),
-        BEHIND("Behind")
+        RANDOM("随机方向"),
+        STRAFE("环绕"),
+        BEHIND("背后")
     }
 }
