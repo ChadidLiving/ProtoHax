@@ -14,12 +14,12 @@ import dev.sora.relay.utils.timing.MillisecondTimer
 import org.cloudburstmc.protocol.bedrock.data.inventory.transaction.InventoryTransactionType
 import org.cloudburstmc.protocol.bedrock.packet.InventoryTransactionPacket
 
-class ModuleTargets : CheatModule("Targets", CheatCategory.COMBAT, canToggle = false) {
+class ModuleTargets : CheatModule("目标", CheatCategory.COMBAT, canToggle = false) {
 
-	private var targetPlayersValue by boolValue("TargetPlayers", true)
-	private var targetEntitiesValue by boolValue("TargetEntities", false)
-    private var antiBotModeValue by listValue("AntiBotMode", AntiBotMode.values(), AntiBotMode.NONE)
-	private var teamCheckModeValue by listValue("TeamCheckMode", TeamCheckMode.values(), TeamCheckMode.NONE)
+	private var targetPlayersValue by boolValue("玩家", true)
+	private var targetEntitiesValue by boolValue("生物", false)
+    private var antiBotModeValue by listValue("防止机器人", AntiBotMode.values(), AntiBotMode.NONE)
+	private var teamCheckModeValue by listValue("智能队友", TeamCheckMode.values(), TeamCheckMode.NONE)
 
 	private var attackTimer = MillisecondTimer()
 	var previousAttack: Entity? = null
@@ -91,17 +91,17 @@ class ModuleTargets : CheatModule("Targets", CheatCategory.COMBAT, canToggle = f
 		handlers.add(EventHook(T::class.java, handler) as EventHook<in GameEvent>)
 	}
 
-	class EventTargetChange(session: GameSession, val target: Entity) : GameEvent(session, "target_changed")
+	class EventTargetChange(session: GameSession, val target: Entity) : GameEvent(session, "目标切换")
 
-	class EventTargetKilled(session: GameSession, val target: Entity) : GameEvent(session, "target_killed")
+	class EventTargetKilled(session: GameSession, val target: Entity) : GameEvent(session, "击杀目标")
 
 	private enum class AntiBotMode(override val choiceName: String) : NamedChoice {
-        PLAYER_LIST("PlayerList"),
-		NONE("None")
+        PLAYER_LIST("玩家列表"),
+		NONE("无")
     }
 
 	private enum class TeamCheckMode(override val choiceName: String) : NamedChoice {
-		NAME_TAG("NameTag"),
-		NONE("None")
+		NAME_TAG("名称标签"),
+		NONE("无")
 	}
 }

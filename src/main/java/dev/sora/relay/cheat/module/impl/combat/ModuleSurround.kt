@@ -13,11 +13,11 @@ import org.cloudburstmc.math.vector.Vector3f
 import org.cloudburstmc.protocol.bedrock.data.inventory.ContainerId
 import org.cloudburstmc.protocol.bedrock.packet.PlayerHotbarPacket
 
-class ModuleSurround : CheatModule("Surround", CheatCategory.COMBAT) {
+class ModuleSurround : CheatModule("环绕", CheatCategory.COMBAT) {
 
-	private var fitInHoleValue by boolValue("FitInHole", true)
-	private var onSneakValue by boolValue("OnSneak", true)
-	private var placeDelayValue by intValue("PlaceDelay", 100, 100..1000)
+	private var fitInHoleValue by boolValue("间隔", true)
+	private var onSneakValue by boolValue("潜行", true)
+	private var placeDelayValue by intValue("放置延迟", 100, 100..1000)
 
 	private val placeableDirections = arrayOf(EnumFacing.EAST, EnumFacing.NORTH, EnumFacing.SOUTH, EnumFacing.WEST, EnumFacing.DOWN)
 	private val delayTimer = MillisecondTimer()

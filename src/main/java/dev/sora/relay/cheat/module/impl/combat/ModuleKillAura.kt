@@ -14,19 +14,19 @@ import dev.sora.relay.game.utils.toRotation
 import org.cloudburstmc.math.vector.Vector3f
 import kotlin.math.pow
 
-class ModuleKillAura : CheatModule("KillAura", CheatCategory.COMBAT) {
+class ModuleKillAura : CheatModule("杀戮光环", CheatCategory.COMBAT) {
 
     private val cpsValue = clickValue()
-    private var rangeValue by floatValue("Range", 3.7f, 2f..7f)
-    private var attackModeValue by listValue("AttackMode", AttackMode.values(), AttackMode.SINGLE)
-    private var rotationModeValue by listValue("RotationMode", RotationMode.values(), RotationMode.LOCK)
-    private var swingValue by listValue("Swing", EntityLocalPlayer.SwingMode.values(), EntityLocalPlayer.SwingMode.BOTH)
-	private var priorityModeValue by listValue("PriorityMode", PriorityMode.values(), PriorityMode.DISTANCE)
+    private var rangeValue by floatValue("距离", 3.7f, 2f..100f)
+    private var attackModeValue by listValue("攻击模式", AttackMode.values(), AttackMode.SINGLE)
+    private var rotationModeValue by listValue("旋转", RotationMode.values(), RotationMode.LOCK)
+    private var swingValue by listValue("挥手", EntityLocalPlayer.SwingMode.values(), EntityLocalPlayer.SwingMode.BOTH)
+	private var priorityModeValue by listValue("优先攻击", PriorityMode.values(), PriorityMode.DISTANCE)
 	private var reversePriorityValue by boolValue("ReversePriority", false)
-	private var mouseoverValue by boolValue("Mouseover", false)
-    private var swingSoundValue by boolValue("SwingSound", true)
-    private var failRateValue by floatValue("FailRate", 0f, 0f..1f)
-    private var failSoundValue by boolValue("FailSound", true).visible { failRateValue > 0f }
+	private var mouseoverValue by boolValue("指针悬停", false)
+    private var swingSoundValue by boolValue("挥刀声音", true)
+    private var failRateValue by floatValue("空刀概率", 0f, 0f..1f)
+    private var failSoundValue by boolValue("空刀声音", true).visible { failRateValue > 0f }
 
 	private val handleTick = handle<EventTick> {
 		val range = rangeValue.pow(2)
@@ -37,7 +37,7 @@ class ModuleKillAura : CheatModule("KillAura", CheatCategory.COMBAT) {
 
 		val aimTarget = selectEntity(session, entityList)
 
-		if (cpsValue.range.first >= 20 || cpsValue.canClick) {
+		if (cpsValue.range.first >= 1500 || cpsValue.canClick) {
 			if (Math.random() <= failRateValue) {
 				session.player.swing(swingValue, failSoundValue)
 			} else {
@@ -71,8 +71,8 @@ class ModuleKillAura : CheatModule("KillAura", CheatCategory.COMBAT) {
 	}
 
 	private enum class AttackMode(override val choiceName: String) : NamedChoice {
-        SINGLE("Single"),
-        MULTI("Multi")
+        SINGLE("单个"),
+        MULTI("多个")
     }
 
 	private enum class RotationMode(override val choiceName: String) : NamedChoice {
@@ -87,7 +87,7 @@ class ModuleKillAura : CheatModule("KillAura", CheatCategory.COMBAT) {
 		/**
 		 * represents a touch screen liked rotation
 		 */
-		APPROXIMATE("Approximate") {
+		APPROXIMATE("概率") {
 			override fun rotate(session: GameSession, source: Vector3f, target: Vector3f): Rotation {
 				val aimTarget = toRotation(source, target).let {
 					Rotation(it.yaw, it.pitch / 2)
@@ -101,7 +101,7 @@ class ModuleKillAura : CheatModule("KillAura", CheatCategory.COMBAT) {
 				}
 			}
 		},
-        NONE("None") {
+        NONE("无") {
 			override fun rotate(session: GameSession, source: Vector3f, target: Vector3f): Rotation? {
 				return null
 			}
@@ -111,8 +111,8 @@ class ModuleKillAura : CheatModule("KillAura", CheatCategory.COMBAT) {
     }
 
 	private enum class PriorityMode(override val choiceName: String) : NamedChoice {
-		DISTANCE("Distance"),
-		HEALTH("Health"),
-		DIRECTION("Direction")
+		DISTANCE("距离"),
+		HEALTH("血量"),
+		DIRECTION("方向")
 	}
 }

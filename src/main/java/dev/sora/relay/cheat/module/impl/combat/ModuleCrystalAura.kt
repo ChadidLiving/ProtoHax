@@ -26,13 +26,13 @@ import org.cloudburstmc.protocol.bedrock.packet.PlayerHotbarPacket
 import kotlin.math.floor
 import kotlin.math.pow
 
-class ModuleCrystalAura : CheatModule("CrystalAura", CheatCategory.COMBAT) {
+class ModuleCrystalAura : CheatModule("水晶光环", CheatCategory.COMBAT) {
 
-	private var rangeValue by floatValue("Range", 5f, 3f..10f)
-	private var suicideValue by boolValue("Suicide", false)
-	private var placeValue by boolValue("Place", true)
-	private var delayValue by intValue("Delay", 400, 100..1000)
-	private var removeParticlesValue by boolValue("RemoveParticles", true)
+	private var rangeValue by floatValue("距离", 5f, 3f..10f)
+	private var suicideValue by boolValue("自杀", false)
+	private var placeValue by boolValue("放置", true)
+	private var delayValue by intValue("延迟", 400, 100..1000)
+	private var removeParticlesValue by boolValue("移除粒子", true)
 
 	private val EXPLOSION_SIZE = 6f
 
