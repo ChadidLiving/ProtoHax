@@ -3,12 +3,12 @@ name: Build Release APK
 on:
   push:
     branches:
-      - 稳定版  # 如果你用的是 master 或 main，请改成对应分支名
-  pull_request:
+      - 稳定版  # 替换成你仓库真实的分支名（如：main、master）
+  workflow_dispatch:  # 支持手动触发构建
 
 jobs:
   build:
-
+    name: Build APK
     runs-on: ubuntu-latest
 
     steps:
@@ -18,8 +18,8 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          java-version: '17'
           distribution: 'temurin'
+          java-version: '17'
 
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
