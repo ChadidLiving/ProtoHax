@@ -10,9 +10,9 @@ import org.cloudburstmc.protocol.bedrock.packet.MovePlayerPacket
 import org.cloudburstmc.protocol.bedrock.packet.NetworkStackLatencyPacket
 import org.cloudburstmc.protocol.bedrock.packet.PlayerAuthInputPacket
 
-class ModuleDisabler : CheatModule("Disabler", CheatCategory.MISC) {
+class ModuleDisabler : CheatModule("禁用检测", CheatCategory.MISC) {
 
-    private var modeValue by choiceValue("Mode", arrayOf(Mineplex, Cubecraft, LifeBoat), Mineplex)
+    private var modeValue by choiceValue("模式", arrayOf(Mineplex, Cubecraft, LifeBoat), Mineplex)
 
 	private object Mineplex : Choice("Mineplex") {
 

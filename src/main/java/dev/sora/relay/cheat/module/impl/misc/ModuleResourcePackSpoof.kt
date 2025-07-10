@@ -15,9 +15,9 @@ import java.util.*
 import java.util.zip.ZipFile
 
 
-class ModuleResourcePackSpoof : CheatModule("ResourcePackSpoof", CheatCategory.MISC) {
+class ModuleResourcePackSpoof : CheatModule("加载材质包", CheatCategory.MISC) {
 
-    private var acceptServerPacks by boolValue("AcceptServerPacks", false)
+    private var acceptServerPacks by boolValue("接受服务器资源包", false)
 
 	private val handlePacketInbound = handle<EventPacketInbound> {
 		if (packet is ResourcePacksInfoPacket) {

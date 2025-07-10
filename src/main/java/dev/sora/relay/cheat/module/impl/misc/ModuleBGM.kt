@@ -7,7 +7,7 @@ import dev.sora.relay.game.utils.NoteBlockUtils
 import org.cloudburstmc.protocol.bedrock.data.SoundEvent
 import org.cloudburstmc.protocol.bedrock.packet.LevelSoundEventPacket
 
-class ModuleBGM : CheatModule("BGM", CheatCategory.MISC) {
+class ModuleBGM : CheatModule("音乐", CheatCategory.MISC) {
 
     private val song by lazy {
 		NoteBlockUtils.Song().apply {

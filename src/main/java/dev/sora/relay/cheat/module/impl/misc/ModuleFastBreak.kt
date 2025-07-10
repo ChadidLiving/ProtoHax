@@ -6,9 +6,9 @@ import dev.sora.relay.game.entity.data.Effect
 import dev.sora.relay.game.event.EventTick
 import org.cloudburstmc.protocol.bedrock.packet.MobEffectPacket
 
-class ModuleFastBreak : CheatModule("FastBreak", CheatCategory.MISC) {
+class ModuleFastBreak : CheatModule("快速挖掘", CheatCategory.MISC) {
 
-    private var amplifierValue by intValue("Level", 5, 1..128)
+    private var amplifierValue by intValue("等级", 5, 1..128)
 
 	private val handleTick = handle<EventTick> {
 		if (session.player.tickExists % 20 != 0L) return@handle

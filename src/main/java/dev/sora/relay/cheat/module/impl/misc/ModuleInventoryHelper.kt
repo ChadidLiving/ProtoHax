@@ -22,28 +22,28 @@ import org.cloudburstmc.protocol.bedrock.packet.ContainerClosePacket
 import org.cloudburstmc.protocol.bedrock.packet.ContainerOpenPacket
 import org.cloudburstmc.protocol.bedrock.packet.InteractPacket
 
-class ModuleInventoryHelper : CheatModule("InventoryHelper", CheatCategory.MISC) {
+class ModuleInventoryHelper : CheatModule("整理背包", CheatCategory.MISC) {
 
-    private var stealChestValue by boolValue("StealChest", true)
-    private var guiOpenValue by boolValue("GuiOpen", false)
+    private var stealChestValue by boolValue("盗取", true)
+    private var guiOpenValue by boolValue("打开背包", false)
 
 	/**
 	 * FIXME
 	 */
-    private var simulateInventoryValue by boolValue("SimulateInventory", false).visible { !guiOpenValue }
-    private var autoCloseValue by boolValue("AutoClose", false)
-    private var throwUnnecessaryValue by boolValue("ThrowUnnecessary", true)
-    private var swingValue by listValue("Swing", EntityLocalPlayer.SwingMode.values(), EntityLocalPlayer.SwingMode.BOTH)
+    private var simulateInventoryValue by boolValue("模拟打开背包", false).visible { !guiOpenValue }
+    private var autoCloseValue by boolValue("自动关闭", false)
+    private var throwUnnecessaryValue by boolValue("自动丢弃", true)
+    private var swingValue by listValue("挥手", EntityLocalPlayer.SwingMode.values(), EntityLocalPlayer.SwingMode.BOTH)
     private val cpsValue = clickValue(value = 2..4)
-    private var sortArmorValue by boolValue("Armor", true)
-    private var sortOffhandValue by listValue("Offhand", SortOffhandMode.values(), SortOffhandMode.TOTEM)
-    private var sortSwordValue by intValue("SortSword", 0, -1..8)
-	private var sortTridentValue by intValue("SortTrident", 1, -1..8)
-    private var sortPickaxeValue by intValue("SortPickaxe", 5, -1..8)
-    private var sortAxeValue by intValue("SortAxe", 6, -1..8)
-    private var sortBlockValue by intValue("SortBlock", 7, -1..8)
-    private var sortGAppleValue by intValue("SortGApple", 2, -1..8)
-    private var noSortNoCloseValue by boolValue("NoCloseIfNoSort", true)
+    private var sortArmorValue by boolValue("自动护甲", true)
+    private var sortOffhandValue by listValue("副手", SortOffhandMode.values(), SortOffhandMode.TOTEM)
+    private var sortSwordValue by intValue("剑", 0, -1..8)
+	private var sortTridentValue by intValue("三叉戟", 1, -1..8)
+    private var sortPickaxeValue by intValue("稿子", 5, -1..8)
+    private var sortAxeValue by intValue("斧头", 6, -1..8)
+    private var sortBlockValue by intValue("方块", 7, -1..8)
+    private var sortGAppleValue by intValue("金苹果", 2, -1..8)
+    private var noSortNoCloseValue by boolValue("不整理不关闭", true)
 
     private val sortArmor = arrayOf(
 		sortByTag(PlayerInventory.SLOT_HELMET, ItemTags.TAG_IS_HELMET),
@@ -245,8 +245,8 @@ class ModuleInventoryHelper : CheatModule("InventoryHelper", CheatCategory.MISC)
     }
 
 	private enum class SortOffhandMode(override val choiceName: String) : NamedChoice {
-		SHIELD("Shield"),
-		TOTEM("Totem"),
-		NONE("None")
+		SHIELD("盾牌"),
+		TOTEM("自动图腾"),
+		NONE("无")
 	}
 }

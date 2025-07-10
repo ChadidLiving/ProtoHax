@@ -18,12 +18,12 @@ import org.cloudburstmc.protocol.bedrock.data.inventory.ItemData
 import org.cloudburstmc.protocol.bedrock.data.inventory.transaction.InventoryTransactionType
 import org.cloudburstmc.protocol.bedrock.packet.InventoryTransactionPacket
 
-class ModuleMiner : CheatModule("Miner", CheatCategory.MISC) {
+class ModuleMiner : CheatModule("自动挖床", CheatCategory.MISC) {
 
 	private var blockValue by stringValue("Block", "minecraft:bed")
-	private var rangeValue by intValue("Range", 5, 2..7)
-	private var swingValue by listValue("Swing", EntityLocalPlayer.SwingMode.values(), EntityLocalPlayer.SwingMode.BOTH)
-	private var actionValue by listValue("Action", Action.values(), Action.BREAK)
+	private var rangeValue by intValue("距离", 5, 2..30)
+	private var swingValue by listValue("挥手", EntityLocalPlayer.SwingMode.values(), EntityLocalPlayer.SwingMode.BOTH)
+	private var actionValue by listValue("动作", Action.values(), Action.BREAK)
 
 	private var pos: Vector3i? = null
 	private var lastingBreakTime = 0
@@ -166,7 +166,7 @@ class ModuleMiner : CheatModule("Miner", CheatCategory.MISC) {
 	}
 
 	private enum class Action(override val choiceName: String) : NamedChoice {
-		BREAK("Break"),
-		USE("Use")
+		BREAK("打断"),
+		USE("使用")
 	}
 }

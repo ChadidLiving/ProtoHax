@@ -8,7 +8,7 @@ import org.cloudburstmc.protocol.bedrock.data.skin.SerializedSkin
 import org.cloudburstmc.protocol.bedrock.packet.PlayerListPacket
 import org.cloudburstmc.protocol.bedrock.packet.PlayerSkinPacket
 
-class ModuleNoSkin : CheatModule("NoSkin", CheatCategory.MISC) {
+class ModuleNoSkin : CheatModule("屏蔽皮肤", CheatCategory.MISC) {
 
     private val skinData by lazy {
         ImageData.of(ByteArray(16384).also { for(i in it.indices) it[i] = Byte.MAX_VALUE })

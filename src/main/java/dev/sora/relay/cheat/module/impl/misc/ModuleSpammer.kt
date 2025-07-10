@@ -11,11 +11,11 @@ import dev.sora.relay.utils.timing.MillisecondTimer
 import org.cloudburstmc.protocol.bedrock.packet.TextPacket
 import kotlin.random.Random
 
-class ModuleSpammer : CheatModule("Spammer", CheatCategory.MISC) {
+class ModuleSpammer : CheatModule("刷屏", CheatCategory.MISC) {
 
-	private var modeValue by choiceValue("Mode", arrayOf(Spam(), KillSay()), "Spam")
-    private var messageValue by stringValue("Message", "[!] I'm using ProtoHax t<dot>me/protohax")
-	private var randomSuffix by boolValue("RandomSuffix", true)
+	private var modeValue by choiceValue("模式", arrayOf(spam(), killsay()), "刷屏")
+    private var messageValue by stringValue("内容", "Protohax_Metal")
+	private var randomSuffix by boolValue("随机序列号", true)
 
 	private fun sendMessage(placeholders: Map<String, String>) {
 		session.sendPacket(TextPacket().apply {
@@ -31,9 +31,9 @@ class ModuleSpammer : CheatModule("Spammer", CheatCategory.MISC) {
 		})
 	}
 
-	private inner class Spam : Choice("Spam") {
+	private inner class Spam : Choice("直接发送") {
 
-		private var delayValue by intValue("Delay", 5000, 500..10000)
+		private var delayValue by intValue("延迟", 5000, 500..10000)
 
 		private val spamTimer = MillisecondTimer()
 
@@ -45,7 +45,7 @@ class ModuleSpammer : CheatModule("Spammer", CheatCategory.MISC) {
 		}
 	}
 
-	private inner class KillSay : Choice("KillSay") {
+	private inner class KillSay : Choice("击杀") {
 
 		private val handleTargetKilled = handle<ModuleTargets.EventTargetKilled> {
 			if (target is EntityPlayer) {
