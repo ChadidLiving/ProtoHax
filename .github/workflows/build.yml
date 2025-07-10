@@ -3,8 +3,8 @@ name: Build Debug APK
 on:
   push:
     branches:
-      - 稳定版  # 修改为你的分支名
-  workflow_dispatch:
+      - 稳定版  # 替换为你想自动构建的分支
+  workflow_dispatch:  # 👈 这个就是“手动触发按钮”
 
 jobs:
   build:
@@ -23,7 +23,7 @@ jobs:
       - name: Set up Android SDK (v4)
         uses: android-actions/setup-android@v4
 
-      - name: Install specific SDK components (if needed)
+      - name: Install specific SDK components
         run: |
           sdkmanager "platforms;android-33" "build-tools;33.0.2"
 
@@ -35,6 +35,9 @@ jobs:
 
       - name: Upload Debug APK Artifact
         uses: actions/upload-artifact@v4
+        with:
+          name: ProtoHax-debug.apk
+          path: app/build/outputs/apk/debug/*.apk        uses: actions/upload-artifact@v4
         with:
           name: ProtoHax-debug.apk
           path: app/build/outputs/apk/debug/*.apk        with:
