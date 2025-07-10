@@ -16,9 +16,9 @@ import org.cloudburstmc.protocol.bedrock.packet.AnimatePacket
 import org.cloudburstmc.protocol.bedrock.packet.InventoryTransactionPacket
 import org.cloudburstmc.protocol.bedrock.packet.LevelEventPacket
 
-class ModuleHitEffect : CheatModule("HitEffect", CheatCategory.VISUAL) {
+class ModuleHitEffect : CheatModule("打击粒子", CheatCategory.VISUAL) {
 
-	private var effectValue by listValue("Effect", Effect.values(), Effect.CRITICAL)
+	private var effectValue by listValue("效果", Effect.values(), Effect.CRITICAL)
 
 	private val onPacketOutbound = handle<EventPacketOutbound> {
 		if (packet is InventoryTransactionPacket && packet.transactionType == InventoryTransactionType.ITEM_USE_ON_ENTITY && packet.actionType == 1) {
@@ -30,7 +30,7 @@ class ModuleHitEffect : CheatModule("HitEffect", CheatCategory.VISUAL) {
 	}
 
 	private enum class Effect(override val choiceName: String) : NamedChoice {
-		CRITICAL("Critical") {
+		CRITICAL("暴击粒子") {
 			override fun deployEffect(session: GameSession, target: Entity) {
 				session.netSession.inboundPacket(AnimatePacket().apply {
 					runtimeEntityId = target.runtimeEntityId
@@ -38,7 +38,7 @@ class ModuleHitEffect : CheatModule("HitEffect", CheatCategory.VISUAL) {
 				})
 			}
 		},
-		BLOOD("Blood") {
+		BLOOD("血液") {
 
 			private val definition by lazy { BlockDefinition(0, "minecraft:redstone_block", NbtMap.EMPTY) }
 
@@ -50,7 +50,7 @@ class ModuleHitEffect : CheatModule("HitEffect", CheatCategory.VISUAL) {
 				})
 			}
 		},
-		LAVA("Lava") {
+		LAVA("岩浆") {
 
 			private val definition by lazy { BlockDefinition(0, "minecraft:lava", NbtMap.builder()
 				.putInt("liquid_depth", 15).build()) }

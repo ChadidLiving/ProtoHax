@@ -12,12 +12,12 @@ import org.cloudburstmc.protocol.bedrock.packet.AddPlayerPacket
 import org.cloudburstmc.protocol.bedrock.packet.MobEffectPacket
 import org.cloudburstmc.protocol.bedrock.packet.SetEntityDataPacket
 
-class ModuleAntiBlind : CheatModule("AntiBlind", CheatCategory.VISUAL) {
+class ModuleAntiBlind : CheatModule("防失明", CheatCategory.VISUAL) {
 
-    private var nightVisionValue by boolValue("NightVision", true)
-	private var removeFireValue by boolValue("RemoveFire", false)
-    private var removeBadEffectsValue by boolValue("RemoveBadEffects", true)
-	private var removeInvisibleValue by boolValue("RemoveInvisible", true)
+    private var nightVisionValue by boolValue("夜视", true)
+	private var removeFireValue by boolValue("屏蔽火焰", false)
+    private var removeBadEffectsValue by boolValue("屏蔽负面状态", true)
+	private var removeInvisibleValue by boolValue("防止玩家隐身", true)
 
 	override fun onDisable() {
 		if (nightVisionValue && session.netSessionInitialized) {
